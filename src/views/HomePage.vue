@@ -15,59 +15,11 @@
                                 <!--Nav Button  -->
                                 <nav>
                                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="details.htmlnav-home" role="tab" aria-controls="nav-home" aria-selected="true">All</a
-                    >
-                    <a
-                        class="nav-item nav-link"
-                        id="nav-profile-tab"
-                        data-toggle="tab"
-                        href="details.htmlnav-profile"
-                        role="tab"
-                        aria-controls="nav-profile"
-                        aria-selected="false"
-                        >Lifestyle</a
-                    >
-                    <a
-                        class="nav-item nav-link"
-                        id="nav-contact-tab"
-                        data-toggle="tab"
-                        href="details.htmlnav-contact"
-                        role="tab"
-                        aria-controls="nav-contact"
-                        aria-selected="false"
-                        >Travel</a
-                    >
-                    <a
-                        class="nav-item nav-link"
-                        id="nav-last-tab"
-                        data-toggle="tab"
-                        href="details.htmlnav-last"
-                        role="tab"
-                        aria-controls="nav-contact"
-                        aria-selected="false"
-                        >Fashion</a
-                    >
-                    <a
-                        class="nav-item nav-link"
-                        id="nav-Sports"
-                        data-toggle="tab"
-                        href="details.htmlnav-nav-Sport"
-                        role="tab"
-                        aria-controls="nav-contact"
-                        aria-selected="false"
-                        >Sports</a
-                    >
-                    <a
-                        class="nav-item nav-link"
-                        id="nav-technology"
-                        data-toggle="tab"
-                        href="details.htmlnav-techno"
-                        role="tab"
-                        aria-controls="nav-contact"
-                        aria-selected="false"
-                        >Technology</a
-                    >
-                    </div>
+
+                                        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="details.htmlnav-home" role="tab" aria-controls="nav-home" aria-selected="true">All</a>
+                                        <a class="nav-item nav-link " v-for="(category, index) in categoryLists" :key="index" id="nav-home-tab" data-toggle="tab" href="details.htmlnav-home" role="tab" aria-controls="nav-home" aria-selected="true">{{ category.title }}</a>
+                    
+                                    </div>
                                 </nav>
                                 <!--End Nav Button  -->
                             </div>
@@ -155,34 +107,7 @@
     
 </template>
 
-<script>
-    import axios from "axios";
-    export default {
-        name: "HomePage",
-        data () {
-            return {
-                postLists: {},
-            }
-        },
-        methods: {
-            getAllPost () {
-                axios.get("http://127.0.0.1:8000/api/post").then((response) => {
-                    for(let i=0; i < response.data.post.length ; i++){
-                        if(response.data.post[i].image != null){
-                            response.data.post[i].image = "http://127.0.0.1:8000/postImage/"+response.data.post[i].image;
-                        }else{
-                            response.data.post[i].image = "http://127.0.0.1:8000/defaultImage/default_post.png";
-                        }
-                    }
-                    this.postLists = response.data.post;
-                })
-            }
-        },
-        mounted(){
-            this.getAllPost();
-        }
-    }
-</script>
+<script src="../../public/js/homePage.js"></script>
 
 <style lang="stylus" scoped>
 
