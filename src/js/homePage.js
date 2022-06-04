@@ -63,7 +63,17 @@ import axios from "axios";
                 }).catch((error) => {
                     console.log(error);
                 });
-            }
+            },
+            newsDetail(id){
+                // console.log(id);
+                this.$router.push({
+                    name: 'newsDetail',
+                    params: {
+                        newsId: id,
+                    },
+                });
+            },
+
         },
         mounted(){
             this.getAllPost();
