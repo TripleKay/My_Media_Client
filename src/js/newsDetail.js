@@ -25,7 +25,17 @@ export default {
             }).catch((error) => {
                 console.log(error);
             });
-        }
+        },
+        home(){
+            this.$router.push({
+                name: "home",
+            })
+        },
+        login(){
+            this.$router.push({
+                name: "login",
+            })
+        },
     },
     mounted(){
         // console.log(this.$route.params);
