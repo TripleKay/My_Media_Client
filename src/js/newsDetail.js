@@ -1,11 +1,16 @@
 import axios from "axios";
+import { mapGetters } from "vuex";
 export default {
     name: 'NewsDetail',
     data () {
         return {
             postId: 0,
             postData: {},
+            viewCount : 0
         }
+    },
+    computed: {
+        ...mapGetters(["getToken","getUserData"]),
     },
     methods: {
         loadPost (id) {
@@ -21,7 +26,7 @@ export default {
                     }
               
                 this.postData = response.data.post;
-                console.log(this.postData);
+                // console.log(this.postData);
             }).catch((error) => {
                 console.log(error);
             });
@@ -36,9 +41,25 @@ export default {
                 name: "login",
             })
         },
+        logout(){
+            this.$store.dispatch("setToken",null);
+            this.login();
+        },
+        viewCountLoad(){
+            // for view count
+            let data = {
+                user_id: this.getUserData.id,
+                post_id : this.$route.params.newsId,
+            };
+            axios.post("http://127.0.0.1:8000/api/post/actionLog",data).then((response) => {
+                this.viewCount = response.data.post.length;
+            });
+        }
     },
     mounted(){
-        // console.log(this.$route.params);
+        // for view count
+        this.viewCountLoad();
+        //load post detail
         this.postId = this.$route.params.newsId;
         this.loadPost(this.postId);
     }

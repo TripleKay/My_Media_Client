@@ -91,6 +91,9 @@
                                     
                                     <div class="card-body">
                                         <!-- <div class="badge py-2 rounded-0 shadow  bg-info">prgramming</div> -->
+                                        <div class="">
+                                            <i class="fas fa-eye text-info me-2"></i><span>30</span>
+                                        </div>
                                         <h5 class=" my-3">{{ post.title }}</h5>
                                         <div class="overflow-hidden img-container">
                                             <img v-bind:src="post.image" class="h-100" alt="" srcset="">

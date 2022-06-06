@@ -47,6 +47,10 @@
                         </div>
                         <div class="card-body">
                             <div>
+                                <div v-if="userValidation" class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <strong>User Credentials do not match !</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </div>
                                 <div class="mb-3">
                                     <label for="" class="text-white mb-2">Email</label>
                                     <input v-model="userData.email" type="text" class="form-control" placeholder="enter your email .....">
