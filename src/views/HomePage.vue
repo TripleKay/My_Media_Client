@@ -59,7 +59,9 @@
             <div class="container px-5">
                 <div class="row">
                     <div class="col-12">
-                        <h4 class="mb-0 mt-4  blog-section-title">Blogs And News <div class="badge badge-info">{{ postLists.length }}</div> </h4>
+                        <div class="d-flex justify-content-between align-items-center mb-5">
+                            <h4 class="mb-0 mt-4 blog-section-title">Blogs And News <div class="badge badge-info">{{ postLists.length }}</div> </h4>
+                        </div>
                     </div>
                 </div>
                 <div v-if="!tokenStatus" class="row">
@@ -75,7 +77,7 @@
                     <!-- -------------------------------left container------------------------------------- -->
                     <div class="col-12 col-md-8">
                         
-                        <div class="row mt-5">
+                        <div class="row">
                             <!-- -------------------------------no data found------------------------------------- -->
                             <div v-if="postLists.length == 0"  class="col-12 d-flex align-items-center justify-content-center" style="height: 50vh">
                                 <div class="card bg-transparent border-0">
@@ -91,14 +93,11 @@
                                     
                                     <div class="card-body">
                                         <!-- <div class="badge py-2 rounded-0 shadow  bg-info">prgramming</div> -->
-                                        <div class="">
-                                            <i class="fas fa-eye text-info me-2"></i><span>30</span>
-                                        </div>
-                                        <h5 class=" my-3">{{ post.title }}</h5>
+                                        <h5 class=" mb-3">{{ post.title }}</h5>
                                         <div class="overflow-hidden img-container">
                                             <img v-bind:src="post.image" class="h-100" alt="" srcset="">
                                         </div>
-                                        <p class="text-secondary"> {{ post.description.substring(0,100)+"....." }} </p>
+                                        <p class="text-secondary my-3"> {{ post.description.substring(0,80)+"....." }} </p>
                                         <div class="text-danger text-decoration-underline" @click="newsDetail(post.post_id)">Read More <i class="fas fa-arrow-right ms-3"></i></div>
                                     </div>
                                 </div>
@@ -121,7 +120,7 @@
                                 </div>
                             </div>
                             <!-- -------------------------------category------------------------------------- -->
-                            <div class="category-container mt-4 py-2">
+                            <div class="category-container mt-3 py-2">
                                 <h5 class="">Categories</h5>
                                 <div class="mt-3">
                                     <button class="btn text-black-50 category w-100 text-start active" @click="searchCategory('')">ALL<i class="fas fa-angle-right ms-3"></i></button>

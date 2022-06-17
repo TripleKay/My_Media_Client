@@ -69,6 +69,7 @@ import { mapGetters } from "vuex";
                     console.log(error);
                 });
             },
+            //news card btn
             newsDetail(id){
                 // console.log(id);
                 this.$router.push({
@@ -78,6 +79,7 @@ import { mapGetters } from "vuex";
                     },
                 });
             },
+            //nav bar
             home(){
                 this.$router.push({
                     name: "home",
@@ -88,6 +90,7 @@ import { mapGetters } from "vuex";
                     name: "login",
                 })
             },
+            //for nav bar
             checkToken(){
                 if(this.getToken != null && this.getToken != undefined && this.getToken != ''){
                     this.tokenStatus = true;

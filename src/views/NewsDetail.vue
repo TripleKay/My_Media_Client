@@ -54,7 +54,7 @@
         <section class="py-5  min-vh-100">
             <div class="container">
                 <div class="row">
-                    <div class="col-8">
+                    <div class="col-7">
                         <div class="card bg-white shadow" style="border-radius: 15px">
                         <div class="card-body">
                                 <img :src="postData.image" alt="" class="img-fluid" srcset="" style="border-radius : 15px">
@@ -71,8 +71,20 @@
 
                     </div>
                     <!-- -------------------------------right container------------------------------------- -->
-                    <div class="col-12 col-md-4 min-vh-100">
-                        
+                    <div class="col-5 col-md-5 min-vh-100">
+                        <h3 class="mb-4">Related Posts</h3>
+                        <div class="row">
+                            <div class="col-12" v-for="(post , index) in relatedPost" :key="index">
+                                <div class="mb-3 d-flex align-items-center bg-white rounded p-2">
+                                    <img v-bind:src="post.image" class="" alt="" srcset="" style="width: 150px ; height: 180px">
+                                    <div class="ms-3">
+                                        <h5>{{ post.title }}</h5>
+                                        <p class="mb-0 text-black-50">{{post.description.substring(0,80)+"....." }}</p>
+                                        <button class="btn btn-outline-primary btn-sm mt-2" @click="newsDetail(post.post_id)">read more</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

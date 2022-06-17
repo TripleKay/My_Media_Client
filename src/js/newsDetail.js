@@ -6,7 +6,9 @@ export default {
         return {
             postId: 0,
             postData: {},
-            viewCount : 0
+            viewCount : 0,
+            // categoryId: 0,
+            relatedPost: {},
         }
     },
     computed: {
@@ -45,22 +47,49 @@ export default {
             this.$store.dispatch("setToken",null);
             this.login();
         },
-        viewCountLoad(){
+        viewCountLoad(id){
             // for view count
             let data = {
                 user_id: this.getUserData.id,
-                post_id : this.$route.params.newsId,
+                post_id : id,
             };
             axios.post("http://127.0.0.1:8000/api/post/actionLog",data).then((response) => {
                 this.viewCount = response.data.post.length;
             });
-        }
+        },
+        loadRelatedPost(id){
+            let post = {
+                postId : id,
+            };
+            axios.post("http://127.0.0.1:8000/api/post/relatedPost",post).then((response) => {
+                
+                for(let i=0; i < response.data.post.length ; i++){
+                    if(response.data.post[i].image != null){
+                        response.data.post[i].image = "http://127.0.0.1:8000/postImage/"+response.data.post[i].image;
+                    }else{
+                        response.data.post[i].image = "http://127.0.0.1:8000/defaultImage/default_post.png";
+                    }
+                }
+                this.relatedPost = response.data.post;
+            }).catch((error) => {
+                console.log(error);
+            });
+            
+        },
+        //news card btn
+        newsDetail(id){
+            // console.log(id);
+            this.postId = id;
+            this.loadPost(this.postId);
+            this.viewCountLoad(this.postId);
+        },
     },
     mounted(){
-        // for view count
-        this.viewCountLoad();
         //load post detail
         this.postId = this.$route.params.newsId;
+        // for view count
+        this.viewCountLoad(this.postId);
         this.loadPost(this.postId);
+        this.loadRelatedPost(this.postId);
     }
 }
